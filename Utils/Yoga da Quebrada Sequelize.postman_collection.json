@@ -1,0 +1,424 @@
+{
+	"info": {
+		"_postman_id": "9d82a3d8-8eb7-4672-8759-1aec14d2b9e7",
+		"name": "Yoga da Quebrada Sequelize",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code ===200){",
+							"pm.environment.set('authToken', pm.response.json().token)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"email\": \"xxx@gmail.com\",\n\"password\": \"Rob1234!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlSequelize}}/login",
+					"host": [
+						"{{urlSequelize}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Balbina O Negao\",\n\"email\": \"robl2@gmail.com\",\n\"password\": \"Rob1234!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlSequelize}}/users",
+					"host": [
+						"{{urlSequelize}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Categories",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"AULA PARA CRIANÇÃS DE TODAS AS IDADES\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlSequelize}}/categories",
+					"host": [
+						"{{urlSequelize}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Users Alunos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Denis Carminholi\",\n\"email\": \"deca@gmail.com\",\n\"password\": \"Rob1234!\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlSequelize}}/users/7",
+					"host": [
+						"{{urlSequelize}}"
+					],
+					"path": [
+						"users",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Users Professores",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"if(pm.response.code ===200){",
+							"pm.environment.set('authToken', pm.response.json().token)",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Cristiano Gil\",\n\"email\": \"cri@gmail.com\",\n\"password\": \"Rob1234!\",\n\"usertype\": \"Professor\",\n\"atendimento\" : \"Manhã\",\n\"classes\": [{\"class\":\"AULAS PARA DOIDOES\"}, {\"class\":\"AULAS PARA ADULTOS\"}]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/professores",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"professores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Users Admin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Robson Balbina\",\n\"email\": \"admin.balbina@gmail.com\",\n\"password\": \"Rob1234!\",\n\"usertype\": \"Admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/admin",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"admin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Classes - Professores",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"date\": \"FUTEBOL\",\n\"time\": \"20h00\",\n\"user_id\": \"2\",\n\"category_id\": \"1\"\n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{urlSequelize}}/class",
+					"host": [
+						"{{urlSequelize}}"
+					],
+					"path": [
+						"class"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Apply for ClassesByID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/aulas/607effbd233f108269a5c39a",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aulas",
+						"607effbd233f108269a5c39a"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cancell for ClassesByID",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/aulas/cancelar/607f3cea40bd671396e0b55c",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aulas",
+						"cancelar",
+						"607f3cea40bd671396e0b55c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get ClassesByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/aulas/607dcabd505e9d4e5a5edb5f",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aulas",
+						"607dcabd505e9d4e5a5edb5f"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlSequelize}}/users",
+					"host": [
+						"{{urlSequelize}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Categories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlSequelize}}/categories",
+					"host": [
+						"{{urlSequelize}}"
+					],
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Admin Users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MDc5ZDY4NWU4NmU3NjUzNjIxMGU2MzYiLCJpYXQiOjE2MTg1OTgyOTl9.gJMloHesWxzU8tbTs6ROqoMgIC9G5PCHuVPKjjLBC74",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/admin/professores",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"admin",
+						"professores"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get UserByID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{urlSequelize}}/users/2",
+					"host": [
+						"{{urlSequelize}}"
+					],
+					"path": [
+						"users",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Classes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/aulas",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"aulas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Classes Professor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/professores/classes",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"professores",
+						"classes"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{authToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
