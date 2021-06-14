@@ -1,6 +1,7 @@
 const bcrypt = require('bcryptjs')
 const transport = require('../mail/mail.js')
 const emailMassages = require('../mail/messages.js')
+const jwt = require('jsonwebtoken')
 const {User} = require('../models')
 
 module.exports = {
@@ -23,7 +24,8 @@ module.exports = {
             const getuser = await User.findByPk(_id)
             // const token = await user.generateAuthToken()
             //const message = await transport.sendMail(emailMassages.newUser(req.body.name, req.body.email));
-            res.render('../views/profile', {user:getuser})
+            // res.render('../views/profile', {user:getuser})
+            res.status(200).send({getuser, header:req.headers.authorization})
         }
         catch (e){
             res.status(400).send(e)
@@ -79,8 +81,14 @@ module.exports = {
                 throw new Error("User not Registered")
               }
               console.log(getuser)
-              res.redirect(`/users/${getuser.id}`)
-              // res.status(201).send(getuser)
+              const token = await jwt.sign({id: getuser.id, role: getuser.userType}, 'secret')
+              console.log(token)
+              req.headers['Authorization'] = "Bearer " + token
+              req.user = {id: getuser.id, name: getuser.name, userType: getuser.userType}
+              // res.redirect(`/users/${getuser.id}`)
+              document.cookie = token
+              res.status(201).json({getuser, token, headers: req.headers, request: req.user})
+              
           }
           catch (e){
               res.status(400).send(e)
