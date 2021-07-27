@@ -1,0 +1,145 @@
+<!doctype html>
+
+<html>
+
+<%- include('head'); %>
+  <%- include('headerlanding'); %>
+
+    <link href="/stylesheets/newclass.css" rel="stylesheet">
+
+    <body>
+      <main class="main__newclass">
+        <div class="main__newclass--background">
+
+        </div>
+
+        <Section class="section__newclass">
+          <form action="newclass" method="POST">
+            <div action="newclass__form">
+
+              <div>
+
+                <a class="usuario__titulo">QUAIS OS DIAS DA SEMANA VOCÊ VAI DAR ESSA AULA?</a>
+                <a class="usuario__titulo2">VOCÊ PODE ESCOLHER QUALQUER DIA!</a>
+
+                <div class="usuario__checkbox">
+
+                  <div class="usuario__checkbox--box">
+                    <input TYPE="checkbox" name="date" value=" DOMINGO"> DOMINGO
+                    <input TYPE="checkbox" name="date" value=" SEGUNDA"> SEGUNDA
+                    <input TYPE="checkbox" name="date" value=" TERÇA"> TERÇA
+                    <input TYPE="checkbox" name="date" value=" QUARTA"> QUARTA
+                    <input TYPE="checkbox" name="date" value=" QUINTA"> QUINTA
+                    <input TYPE="checkbox" name="date" value=" SEXTA"> SEXTA
+                    <input TYPE="checkbox" name="date" value=" SÁBADO"> SÁBADO
+                  </div>
+
+                </div>
+
+                <a class="usuario__titulo">QUAL O HORÁRIO DESSA AULA?</a>
+                <a class="usuario__titulo2">DURAÇÃO DE ATÉ 1 HORA</a>
+
+                <div class="newclass__horario">
+                  <select class="newclass__horario--hora" name="time">
+                    <option class="newclass__horario--texto" value="01">01</option>
+                    <option class="newclass__horario--texto" value="02">02</option>
+                    <option class="newclass__horario--texto" value="03">03</option>
+                    <option class="newclass__horario--texto" value="04">04</option>
+                    <option class="newclass__horario--texto" value="05">05</option>
+                    <option class="newclass__horario--texto" value="06">06</option>
+                    <option class="newclass__horario--texto" value="07">07</option>
+                    <option class="newclass__horario--texto" value="08">08</option>
+                    <option class="newclass__horario--texto" value="09">09</option>
+                    <option class="newclass__horario--texto" value="10">10</option>
+                    <option class="newclass__horario--texto" value="11">11</option>
+                    <option class="newclass__horario--texto" value="12">12</option>
+                  </select>
+
+                  <select class="newclass__horario--hora" name="minutos">
+                    <option class="newclass__horario--texto" value="01">00</option>
+                    <option class="newclass__horario--texto" value="02">05</option>
+                    <option class="newclass__horario--texto" value="03">10</option>
+                    <option class="newclass__horario--texto" value="04">15</option>
+                    <option class="newclass__horario--texto" value="05">20</option>
+                    <option class="newclass__horario--texto" value="06">25</option>
+                    <option class="newclass__horario--texto" value="07">30</option>
+                    <option class="newclass__horario--texto" value="08">35</option>
+                    <option class="newclass__horario--texto" value="09">40</option>
+                    <option class="newclass__horario--texto" value="10">45</option>
+                    <option class="newclass__horario--texto" value="11">50</option>
+                    <option class="newclass__horario--texto" value="12">55</option>
+                  </select>
+
+                  <select class="newclass__horario--hora" name="AMPM">
+                    <option class="newclass__horario--texto" value="AM">AM</option>
+                    <option class="newclass__horario--texto" value="PM">PM</option>
+                  </select>
+
+                </div>
+
+                <a class="usuario__titulo">QUAL O TIPO DE YOGA VOCÊ VAI APLICAR?</a>
+                <a class="usuario__titulo2">ESCOLHA PARA QUAL PÚBLICO SERÁ A AULA</a>
+
+              </div class="newclass__about">
+
+              <div class="newclass__images">
+
+                <div class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="./images/iniciantes.svg" title="image1"
+                      alt="image1"></div>
+                  <input TYPE="radio" name="category" value="1"> INICIANTES
+                </div>
+
+                <div class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="./images/criancas.svg" title="image1"
+                      alt="image1"></div>
+                  <input TYPE="radio" name="category" value="2"> CRIANÇAS
+                </div>
+
+                <div class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="./images/adultos.svg" title="image1"
+                      alt="image1"></div>
+                  <input TYPE="radio" name="category" value="3"> ADULTOS
+                </div>
+
+                <div class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="./images/idosos.svg" title="image1"
+                      alt="image1"></div>
+                  <input TYPE="radio" name="category" value="4"> IDOSOS
+                </div>
+
+                <div class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="./images/especiais.svg" title="image1"
+                      alt="image1"></div>
+                  <input TYPE="radio" name="category" value="5"> ESPECIAIS
+                </div>
+
+                <div class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="./images/avancado.svg" title="image1"
+                      alt="image1"></div>
+                  <input TYPE="radio" name="category" value="6"> AVANÇADO
+                </div>
+
+              </div>
+
+            </div>
+
+            </div>
+
+            <div class="newclass__button">
+              <!-- <a class="newclass__button--text" href="#">CRIAR AULA</a> -->
+              <button class="newclass__button--text" type="submit">CRIAR AULA</button>
+            </div>
+
+            </div>
+
+            </div>
+
+        </Section>
+        </form>
+      </main>
+    </body>
+
+</html>
+
+<%- include('footer_menor'); %>

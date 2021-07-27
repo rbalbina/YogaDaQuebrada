@@ -1,108 +1,100 @@
-const bcrypt = require('bcryptjs')
+
 const transport = require('../mail/mail.js')
 const emailMassages = require('../mail/messages.js')
+const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken')
-const {User} = require('../models')
+const UserService = require('../services/user.services');
+const { username } = require('../config/database.js');
 
 module.exports = {
 
-    getAllUsers: async (req, res, next) => {
+  getAllUsers: async (req, res, next) => {
 
-        try{
-          const allUsers = await User.findAll()
-          res.status(201).send(allUsers)
+    try {
+      const { count: total, rows: users } = await UserService.findAll(req)
+      let totalPages = Math.round(total / 6)
+      if (!totalPages - 1 >= 0.5) {
+        totalPages++
       }
-      catch (e){
-          res.status(400).send(e)
-          console.log(e)
-      } 
-      },
+      console.log("Number of users: " + total)
+      console.log("Total pages: " + totalPages)
+      // res.status(201).json(users)
+      res.status(201).send(users)
+    }
+    catch (e) {
+      res.status(400).send(e)
+      console.log(e)
+    }
+  },
 
-    getUserByID: async (req, res, next) => {
-        const _id = req.params.id
-          try{
-            const getuser = await User.findByPk(_id)
-            // const token = await user.generateAuthToken()
-            //const message = await transport.sendMail(emailMassages.newUser(req.body.name, req.body.email));
-            // res.render('../views/profile', {user:getuser})
-            res.status(200).send({getuser, header:req.headers.authorization})
-        }
-        catch (e){
-            res.status(400).send(e)
-            console.log(e)
-        } 
-        },
-    
-    createUser: async (req, res) => {
+  getUserByID: async (req, res, next) => {
 
-        const salt = bcrypt.genSaltSync(8)
-        const hash = bcrypt.hashSync(req.body.password, salt)
-        const newUserData = {...req.body}
-        newUserData.password = hash
-        
-        
-        try{
-            const saveUser = await User.create(newUserData)
-            const message = await transport.sendMail(emailMassages.newUser(req.body.name, req.body.email));
-            res.redirect('/login')
-            // res.status(201).send(saveUser)
-        }
-        catch (e){
-            res.status(400).send(e)
-            console.log(e)
-        }   
-      
-      },
+    try {
+      const getuser = await UserService.findById(req)
+      res.status(200).send(getuser)
+    }
+    catch (e) {
+      res.status(400).send(e)
+      console.log(e)
+    }
+  },
 
-      removeUser: async (req, res, next) => {
+  createUser: async (req, res) => {
+    const newUserData = { ...req.body }
 
-        const _id = req.params.id
-          try{
+    try {
+      const saveUser = await UserService.create(newUserData)
+      const message = await transport.sendMail(emailMassages.newUser(req.body.name, req.body.email));
+      res.render('loginMessage', {user: saveUser})
+      // res.status(201).send(saveUser)
+    }
+    catch (e) {
+      res.status(400).send(e)
+      console.log(e)
+    }
 
-            const removeUser = await User.destroy({
-                where: {
-                  id: _id
-                }
-              })
+  },
 
-            res.status(201).send("User removed")
-        }
-        catch (e){
-            res.status(400).send(e)
-            console.log(e)
-        } 
-        },
+  removeUser: async (req, res, next) => {
 
-        login: async (req, res, next) => {
-          
-            try{
-              const getuser = await User.findOne({where: { email: req.body.email}})
-              if(Object.keys(getuser).length === 0){
-                throw new Error("User not Registered")
-              }
-              console.log(getuser)
-              const token = await jwt.sign({id: getuser.id, role: getuser.userType}, 'secret')
-              console.log(token)
-              req.headers['Authorization'] = "Bearer " + token
-              req.user = {id: getuser.id, name: getuser.name, userType: getuser.userType}
-              // res.redirect(`/users/${getuser.id}`)
-              document.cookie = token
-              res.status(201).json({getuser, token, headers: req.headers, request: req.user})
-              
-          }
-          catch (e){
-              res.status(400).send(e)
-              console.log(e)
-          } 
-          },
+    const _id = req.params.id
+    try {
 
-          loginindex: async (req, res, next) => {
-          
-            res.render('../views/login')
-          },
+      const removeUser = await UserService.remove(_id)
 
-          register: async (req, res, next) => {
-          
-            res.render('../views/register')
-          }
+      res.status(201).send("User removed" + removeUser)
+    }
+    catch (e) {
+      res.status(400).send(e)
+    }
+  },
+
+  login: async (req, res, next) => {
+
+    try {
+      const getuser = await UserService.login(req.body)
+      console.log(getuser)
+      if (Object.keys(getuser).length === 0) throw new Error()
+      const token = await jwt.sign({ id: getuser.id, role: getuser.userType }, 'secret', { expiresIn: '7 days' })
+      // req.user = { id: getuser.id, name: getuser.name, userType: getuser.userType }
+      req.session.user = getuser
+      res.redirect(`/${getuser.id}/myclasses`)
+      // res.status(200).send({ token, getuser })
+
+    }
+    catch (e) {
+      res.status(400).send({ error: "User do not Exist" })
+      console.log(e)
+    }
+  },
+
+  loginindex: async (req, res, next) => {
+
+    res.render('../views/login')
+  },
+
+  register: async (req, res, next) => {
+
+    res.render('../views/register')
+  }
 }

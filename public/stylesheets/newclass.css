@@ -1,0 +1,262 @@
+/* RESET CSS */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    box-sizing: border-box;
+    list-style: none;
+    text-decoration: none;
+    }
+
+/* FONTES */
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
+
+html{
+    font-family: 'Titillium Web', sans-serif;
+    text-align: center;
+    }
+
+
+                   /* TELA DE newclass */
+
+.main__newclass {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: 250px;
+    flex-direction: column;
+}
+
+.main__newclass--background{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-image: url(../images/background_4.png);
+    background-position: center;
+    background-size: cover;
+    background-color: #e0edee;
+    opacity: 30%;
+    z-index: 0;
+}
+
+.section__newclass {
+    padding: 50px 0 50px 0;
+    align-items: center;
+    flex-direction: column;
+    z-index: 1;
+}
+
+.newclass__form{
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+    align-content: center;
+    flex-wrap:wrap;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    flex-direction: column;
+}
+
+.usuario__texto{
+    font-size: 14px;
+    display: flex;
+    height: auto;
+    margin: 2px 0 2px 0;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    align-content: space-around;
+    color: gray;
+}
+
+.usuario__titulo{
+    display: flex;
+    font-size: 20px;
+    font-weight: 600;
+    color: #662D91;
+    margin-top: 0;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.usuario__titulo2{
+    display: flex;
+    font-size: 18px;
+    font-weight: 500;
+    color: #066C6F;
+    margin-top: 0;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.usuario__checkbox{
+    font-size: 14px;
+    display: flex;
+    color: gray;
+    margin: 0 1rem 1rem 1rem;
+    padding: 1rem;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.usuario__checkbox--box{
+    padding: 0.5rem;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.usuario__texto--professor{
+    padding-top: 1rem;
+    margin: 5px;
+    font-size: 18px;
+    text-align: center;
+    font-weight:500;
+    color: #662D91;
+}
+
+.usuario__texto--professor2{
+    display: flex;
+    justify-content: center;
+}
+
+.usuario__texto--yn{
+    font-size: 14px;
+    color: gray;
+    margin: 0 20px 0 20px;
+}
+
+.campo__usuario{
+    object-position:inherit;
+    text-align: center;
+    border-radius: 20px;
+    width: 30vw;
+    height: 25px;
+    border-color: rgb(230, 230, 230);
+    background-color:white;
+    }
+
+/* HORAS */
+
+.newclass__horario {
+    margin: auto;
+    padding: 1rem 0 2rem 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.newclass__horario--hora{
+    padding: 0.5rem;
+    flex-direction: row;
+    display: flex;
+    background-color:white;
+    border-radius: 50px;
+    width: 9vw;
+    height: 3vw;
+    border: none;
+    margin: 0 1rem ;
+    color: gray;
+    font-size: 10pt;
+    font-weight: 500;
+    align-items: center;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+.newclass__horario--texto{
+    border-color: rgb(230, 230, 230);
+    background-color:white;
+    }
+
+/* PARTE DOS ICONES */
+
+.newclass__about {
+    margin: auto;
+    padding: 0 0 40px 0;
+    display: flex;
+    justify-content: space-around;
+    }
+  
+.newclass__images {
+    display: flex;
+    max-height: 100%;
+    justify-content: center;
+    align-items: center;
+    font-size: 23px;
+}
+  
+.newclass__images--img {
+    display: block;
+    width: 60px;
+    height: auto;
+    margin: 0 auto;
+    margin-bottom: 0px;
+    }
+  
+.newclass__legenda {
+    color: gray;
+    flex-direction: column;
+    margin: 0 1rem 1rem 1rem;
+    display: flex;
+    max-height: 100%;
+    font-size: 14px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 0.5rem;
+    }
+
+/* BOTAO */
+
+.newclass__button {
+    display: flex;
+    height: 40px;
+    border: none;
+    margin: 20px 0 0 0;
+    justify-content: space-around;
+    align-items: flex-end;
+}
+
+.newclass__button--text {
+    display: flex;
+    background-color: #662D91;
+    border-radius: 50px;
+    width: 30vw;
+    height: 40px;
+    border: none;
+    margin: 20px 0 0 0;
+    color: white;
+    font-size: 15pt;
+    font-weight: 700;
+    align-items: center;
+    justify-content: space-around;
+    align-content: space-around;
+}
+
+/* PARTE RESPONSIVA */
+
+@media (max-width: 1024px){
+
+}
+
+@media (max-width: 800px){
+
+}
