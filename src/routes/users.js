@@ -1,14 +1,12 @@
 
-const userController = require('../controller/UserController')
+const userController = require('../controller/UserController');
+const auth = require('../middlewares/auth');
 
 module.exports = app =>{
 
-
-app.post('/users/login', userController.getAllUsers);
-
 app.post('/users/logout', userController.getAllUsers);
 
-app.get('/users', userController.getAllUsers);
+app.get('/users',  userController.getAllUsers);
 
 app.get('/users/:id', userController.getUserByID);
 

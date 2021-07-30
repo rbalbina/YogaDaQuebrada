@@ -4,19 +4,26 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const server = require('http')
+const session = require('express-session')
 const cors = require('cors')
 const app = express();
+// const ejsLint = require('ejs-lint')
+require('dotenv').config()
 
+console.log(process.env.DB_HOST)
 // view engine setup
+app.use(session({secret:"projetoIntegrador", resave: true, saveUninitialized:true}))
 app.set('views', path.join(__dirname, '/src/views'));
 app.set('view engine', 'ejs');
-
+var a = 5
+console.log(a++)
 app.use(cors())
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use('/public', express.static('public'));
+app.use(express.static('public'));
 
 
 const indexRouter = require('./src/routes/index')(app);
@@ -25,9 +32,6 @@ const categoriesRouter = require('./src/routes/category')(app);
 const classRouter = require('./src/routes/class')(app);
 const loginRouter = require('./src/routes/login')(app);
 const room = require('./src/routes/room')(app)
-
-
-
 
 // io.on('connection', socket =>{
 //   socket.on('join-room', () =>{

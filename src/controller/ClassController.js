@@ -1,41 +1,35 @@
 const { Class, User, Category, Timing, Enroll } = require('../models')
-const UserController = require('./UserController')
+const cookieParser = require('cookie-parser');
+const UserService = require('../services/user.services')
+const ClassService = require('../services/class.services')
+const EnrollService = require('../services/enroll.services')
 
 module.exports = {
 
   getAllClasses: async (req, res) => {
 
     try {
-      const allClasses = await Class.findAll({
-        attributes: { exclude: ["createdAt", "updatedAt"] },
-        include: [{
-          model: Category,
-          required: true,
-          as: 'category',
-          attributes: ['name']
-        },
-        {
-          model: User,
-          required: true,
-          as: 'professor',
-          attributes: ['name']
-        },
-        {
-          model: Timing,
-          required: true,
-          as: 'timings',
-          attributes: ['time']
-        },
-        {
-          model: Enroll,
-          // required: true,
-          as: 'students',
-          attributes: ['student_id']
-        }
-        ],
-      })
-      res.status(201).send(allClasses)
+      // const getuser = await UserService.findById(req)
+
+      const allClasses = await ClassService.findAll()
       console.log(allClasses)
+      // res.status(201).send(allClasses)
+      res.render('all_classes', {allClasses:allClasses, user:req.session.user})
+    }
+    catch (e) {
+      res.status(400).send(e)
+    }
+  },
+
+  getClassByID: async (req, res) => {
+    const _id = req.params.classid
+    try {
+      // const getuser = await UserService.findById(req)
+      // console.log(getuser)
+      const classData = await ClassService.findById(classid)
+      res.render('landing', {classData: classData, user:req.session.user})
+      // res.status(201).send(allClasses)
+      console.log(classData)
     }
     catch (e) {
       res.status(400).send(e)
@@ -43,33 +37,14 @@ module.exports = {
     }
   },
 
-  getClassByID: async (req, res) => {
-    const _id = req.params.id
+  getRoomID: async (req, res) => {
+    // const _id = req.params.id
     try {
-      const allClasses = await Class.findByPk(_id, {
-        attributes: ["id", "date"],
-        include: [{
-          model: Category,
-          required: true,
-          as: 'category',
-          attributes: ['name']
-        },
-        {
-          model: User,
-          required: true,
-          as: 'professor',
-          attributes: ['name']
-        },
-        {
-          model: Timing,
-          required: true,
-          as: 'timings',
-          attributes: ['time']
-        }
-        ],
-      })
-      res.status(201).send(allClasses)
-      console.log(allClasses)
+      // const getuser = await UserService.findById(req)
+      // console.log(getuser)
+      // const allClasses = await ClassService.findById(_id)
+      res.render('class',{user:req.session.user})
+      // res.status(201).send(allClasses)
     }
     catch (e) {
       res.status(400).send(e)
@@ -80,7 +55,7 @@ module.exports = {
   getAllTimings: async (req, res) => {
 
     try {
-      const allTimings = await Timing.findAll()
+      const allTimings = await ClassService.findAllTiming()
       res.status(201).send(allTimings)
     }
     catch (e) {
@@ -113,30 +88,64 @@ module.exports = {
   },
 
 
-  createClass: async (req, res) => {
-
-    const classData = {
-      date: req.body.date,
-      professor_id: req.body.professor_id,
-      category_id: req.body.category_id
-
+  newClass: async (req, res) => {
+    const weekbody = req.body.date
+    let weekDays
+    if(weekbody.length >1){
+      weekDays = weekbody[0]
+      for(i=1; i<weekbody.length; i++){
+        weekDays = `${weekDays}, ${weekbody[i]}`
+      }
+    }else{
+      weekDays = weekbody
     }
+
+    console.log("STRING: " +weekDays)
+    try {
+  
+        const classData = {
+          date: weekDays,
+          professor_id: req.params.id,
+          category_id: req.body.category
+    
+        }
+
+        const yogaClass = await Class.create(classData)
+        const timing = `${req.body.time}h${req.body.minutos}-${req.body.AMPM}`
+
+        const timeOptions = {
+          time: timing,
+          class_id: yogaClass.id
+        }
+        // const createTimingsForClass = await Timing.create(timeOptions)
+
+      // const createClass = await Class.create(classData)
+
+      // let arrayTiming = []
+
+      // const timeOptions = timeOptions.map(async time => {
+      //   arrayTiming.push({
+      //     time: timing,
+      //     class_id: createClass.id
+
+      //   })
+      // })
+      // const createTimingsForClass = await Timing.bulkCreate(arrayTiming)
+      // res.status(201).send({body: req.body, params: req.params})
+      res.render('newClassMessage', {user: req.session.user})
+    }
+    catch (e) {
+      res.status(400).send(e)
+      console.log(e)
+    }
+
+  },
+
+  newClassIndex: async (req, res) => {
+
     try {
 
-
-      const createClass = await Class.create(classData)
-      let arrayTiming = []
-
-      const timeOptions = req.body.time
-      timeOptions.map(async time => {
-        arrayTiming.push({
-          time: time,
-          class_id: createClass.id
-
-        })
-      })
-      const createTimingsForClass = await Timing.bulkCreate(arrayTiming)
-      res.status(201).send({ createClass, arrayTiming })
+      res.render('newclass', { user:req.session.user})
     }
     catch (e) {
       res.status(400).send(e)
@@ -149,72 +158,127 @@ module.exports = {
 
     const enrollData = {
 
-      class_id: req.params.id,
-      time_id: req.body.time_id,
-      student_id: req.body.student_id
+      class_id: req.params.classid,
+      student_id: req.session.user.id
 
     }
-
-console.log(enrollData)
-    try{
-      const getEnrollment = await Enroll.findAll({
-        where:{
-          class_id: enrollData.class_id,
-          student_id: enrollData.student_id
-        }
-      })
-      console.log(getEnrollment)
-      getEnrollment.map(enroll =>{
-        if(enroll.time_id == enrollData.time_id){
-          throw new Error()
-        }})
-      // res.status(201).send(getEnrollment)
-      // if(!getEnrollment){
-        const studentEnrolled = await Enroll.create(enrollData)
-        res.status(201).send(studentEnrolled)
-      // }else{
-
-      
-      // console.log("Usuario Existe")
-      // throw new Error()
-      
-      // }
-      
-    }
-    catch(e){
-      res.status(400).send("You are enrolled for this time: " + req.body.time_id + " already. Please choose another one.")
-    }
-
-    // try {
-
-      
-      
-    //   res.status(201).send(studentEnrolled)
-    // }
-    // catch (e) {
-    //   res.status(400).send(e)
-    //   console.log(e)
-    // }
-
-  },
-
-  removeClass: async (req, res, next) => {
-
-    const _id = req.params.id
 
     try {
+      // const getEnrollment = await EnrollService.findAll(enrollData)
 
-      const removeClass = await Class.destroy({
-        where: {
-          id: _id
-        }
-      })
+      const studentEnrolled = await EnrollService.create(enrollData)
+      res.render('enrollMessage', {user:req.session.user})
 
-      res.status(201).send("Class removed")
     }
     catch (e) {
       res.status(400).send(e)
-      console.log(e)
     }
+
   },
+
+  Enroll: async (req, res) => {
+    const classid = req.params.classid
+
+    try {
+
+      res.render('enroll', {user: req.session.user, classid:classid})
+
+    }
+    catch (e) {
+      res.status(400).send(e)
+    }
+
+  },
+
+  myClasses: async (req, res) => {
+    const userid = req.params.id
+    console.log(userid)
+
+    try {     
+        
+      
+      const user = req.session.user
+
+      if(user.userType =='Aluno'){
+
+        const myClasses = await EnrollService.findClassByUser(userid)
+        console.log("My classes are: "+myClasses)
+
+        if (myClasses.length == 0){
+          res.render('myClassesMessage', {user:req.session.user})
+        }else{
+          console.log("ENROLLED: " + myClasses.length)
+          // res.render(myClasses)
+          res.render('landing', {classData: myClasses, user:req.session.user})
+          
+        }
+      }else{
+
+        const myClasses = await ClassService.findClassByUserId(userid)
+
+        if (myClasses.length == 0){
+          res.render('myClassesMessage', {user:req.session.user})
+        }else{
+          console.log(myClasses)
+          // res.send(myClasses)
+          res.render('landingTeacher', {classData: myClasses, user:req.session.user})
+          
+        }
+      }
+  
+
+      
+
+    }
+    catch (e) {
+      res.status(400).send(e)
+    }
+
+  },
+
+
+  removeClasses: async (req, res) => {
+
+    // const classid = req.params.classid
+
+
+
+    try {     
+        
+      const {classid} = req.params
+      const removeClass = await ClassService.removeClass(classid)
+      console.log(removeClass)
+      res.redirect('/:id/myclasses')
+      // const user = req.session.user
+      
+      // res.status(200).send(removeClass)
+      // res.redirect(`/:id/myclasses`)
+
+      // if(user.userType =='Aluno'){
+
+        
+      //   const removeClass = await EnrollService.removeClass(classid)
+      //   res.status(200).send(removeClass)
+      //   // res.render('landing', {classData: myClasses, user:req.session.user})
+      //   console.log("Class deleted: "+removeClass)
+
+
+      // }else{
+
+      //   const removeClass = await ClassService.removeClass(classid)
+      //   res.status(200).send(removeClass)
+      //   // 
+      //   console.log("Class deleted: "+removeClass)
+
+      // }
+  
+      
+
+    }
+    catch (e) {
+      res.status(400).send(e)
+    }
+
+  },
+
 }

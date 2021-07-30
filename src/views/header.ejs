@@ -1,19 +1,31 @@
-<header class="header">
-    <a href="#"><img class="header__logo" src="/images/meditation.svg" title="logo" alt="logo-icon"></a>
-   
+<link href="/stylesheets/headers.css" rel="stylesheet">
+
+<header class="header"> 
+    <div class= "header__divlogo">
+        <a href="/">
+            <img src="/images/logo.svg" title="logo" alt="logo-icon">
+        </a>
+    </div>
+  
     <div>
         <input class="header__search" type="text" placeholder="O que você procura?">
     </div>
-    
+
     <nav>
         <ul class="header__menu">
-            <li class="header__menu--item"><a href="#">COMO FUNCIONA?</a></li>
-            <li class="header__menu--item"><a href="#">QUEM SOMOS</a></li>
-            <li class="header__menu--item" id="seja-instrutor"><a href="#">SEJA INSTRUTOR!</a></li>
+            <li class="header__menu--item">
+                <a class="header__menu--cor2" href="/">HOME</a></li>
+            <li class="header__menu--item">
+                <a class="header__menu--cor2" href="#">COMO FUNCIONA?</a></li>
+            <li class="header__menu--item">
+                <a class="header__menu--cor2" href="#">QUEM SOMOS</a></li>
+            <li class="header__menu--item">
+                <a class="header__menu--instrutor" href="/register">SEJA INSTRUTOR!</a>
+            </li>
+            
         </ul>
     </nav>
-
-    <button class="header__button"><a href="/login">ENTRAR</a></button>
-
-
+    
+    <!-- <a class="header__button" href="#">ENTRAR</a> -->
+       
 </header>

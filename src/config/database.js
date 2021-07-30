@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 module.exports = {
     username:'root',
     password: '12345678',

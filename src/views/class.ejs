@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="pt-br">
+
+  <%- include('head'); %>
+  <%- include('headerlanding'); %>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <main class="container">
+
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Bem Vindo <%= user.name %>!!</h1>
+        <p class="col-md-8 fs-4">É um prazer ter você nessa aula. Entre na sala para começar!</p>
+        <a class="btn btn-primary btn-lg" href="http://localhost:3015/room">Entrar na Aula</a>
+      </div>
+    </div>
+  </main>
+
+<%- include('footer'); %>
+
+</body>
+
+</html>
