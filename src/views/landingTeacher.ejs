@@ -17,10 +17,10 @@
             <h1 class="landing__h2">VEJA SUAS AULAS E MATRÍCULAS</h1>
           </div>
 
-          <!-- <div class="landing__button">
-            <a href="newclass"><button class="landing__button--text">CRIAR UMA SALA DE AULA</button></a>
+          <div class="landing__button">
+            <a href="classes/newclass"><button class="landing__button--text">CRIAR UMA SALA DE AULA</button></a>
             <p class="landing__button--legenda">apenas para professores...</p>
-          </div> -->
+          </div>
 
         </div>
       </section>
@@ -46,9 +46,12 @@
                     roupas confortáveis e sua água.</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <a href="enroll"
-                        class="btn btn-sm btn-outline-secondary">Assistir aula</a>
-                      <a href="Class" class="btn btn-sm btn-outline-secondary">ENTRAR NA AULA</a>
+                      <a href="enroll" class="btn btn-sm btn-outline-secondary">Entrar na aula</a>
+                      <form action="<%= classData[index].id%>/remove" method="POST">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Remover aula</button>
+                      </form>
+                      <!-- <a href="<%= classData[index].id%>/remove" class="btn btn-sm btn-outline-secondary">Remover aula</a> -->
+                      
                       <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
                     </div>
                     <!-- <small class="text-muted">9 mins</small> -->

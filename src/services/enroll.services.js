@@ -24,9 +24,9 @@ class EnrollService {
         return Enroll.create(enrollData)
     }
 
-    static remove(id) {
+    static removeClass(id) {
 
-        return Class.destroy({ where: { id: id } })
+        return Enroll.destroy({ where: { id: id } })
     }
 
 }

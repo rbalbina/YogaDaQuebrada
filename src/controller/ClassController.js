@@ -190,34 +190,38 @@ module.exports = {
 
   },
 
-  myEnrolledClasses: async (req, res) => {
+  myClasses: async (req, res) => {
     const userid = req.params.id
     console.log(userid)
 
-    try {
+    try {     
+        
       
-      const myClasses = await EnrollService.findClassByUser(userid)
-
-      
-      console.log("My classes are: "+myClasses)
       const user = req.session.user
+
       if(user.userType =='Aluno'){
+
+        const myClasses = await EnrollService.findClassByUser(userid)
+        console.log("My classes are: "+myClasses)
 
         if (myClasses.length == 0){
           res.render('myClassesMessage', {user:req.session.user})
         }else{
           console.log("ENROLLED: " + myClasses.length)
-          res.send(myClasses)
-          // res.render('landing', {classData: myClasses, user:req.session.user})
+          // res.render(myClasses)
+          res.render('landing', {classData: myClasses, user:req.session.user})
           
         }
       }else{
+
+        const myClasses = await ClassService.findClassByUserId(userid)
+
         if (myClasses.length == 0){
           res.render('myClassesMessage', {user:req.session.user})
         }else{
           console.log(myClasses)
-          res.send(myClasses)
-          // res.render('landingTeacher', {classData: myClasses, user:req.session.user})
+          // res.send(myClasses)
+          res.render('landingTeacher', {classData: myClasses, user:req.session.user})
           
         }
       }
@@ -232,19 +236,49 @@ module.exports = {
 
   },
 
-  removeClass: async (req, res, next) => {
 
-    const _id = req.params.id
+  removeClasses: async (req, res) => {
 
-    try {
+    // const classid = req.params.classid
 
-      const removeClass = await ClassService.remove(_id)
 
-      res.status(201).send("Class removed")
+
+    try {     
+        
+      const {classid} = req.params
+      const removeClass = await ClassService.removeClass(classid)
+      console.log(removeClass)
+      res.redirect('/:id/myclasses')
+      // const user = req.session.user
+      
+      // res.status(200).send(removeClass)
+      // res.redirect(`/:id/myclasses`)
+
+      // if(user.userType =='Aluno'){
+
+        
+      //   const removeClass = await EnrollService.removeClass(classid)
+      //   res.status(200).send(removeClass)
+      //   // res.render('landing', {classData: myClasses, user:req.session.user})
+      //   console.log("Class deleted: "+removeClass)
+
+
+      // }else{
+
+      //   const removeClass = await ClassService.removeClass(classid)
+      //   res.status(200).send(removeClass)
+      //   // 
+      //   console.log("Class deleted: "+removeClass)
+
+      // }
+  
+      
+
     }
     catch (e) {
       res.status(400).send(e)
-      console.log(e)
     }
+
   },
+
 }

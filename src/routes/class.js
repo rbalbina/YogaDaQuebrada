@@ -5,7 +5,9 @@ module.exports = app =>{
 
 app.get('/:id/classes', classController.getAllClasses);
 
-app.get('/:id/myclasses', classController.myEnrolledClasses);
+app.get('/:id/myclasses', classController.myClasses);
+
+app.delete('/:id/:classid/remove', classController.removeClasses);
 
 app.get('/:id/:classid', classController.getRoomID);
 

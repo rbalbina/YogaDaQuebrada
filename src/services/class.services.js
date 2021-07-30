@@ -64,12 +64,17 @@ class ClassService {
           })
     }
 
+    static findClassByUserId(userid) {
+        
+        return Class.findAll({ where: { professor_id: userid} })
+    }
+
     static create(classData) {
 
         return Class.create(classData)
     }
 
-    static remove(id) {
+    static removeClass(id) {
 
         return Class.destroy({ where: { id: id } })
     }
