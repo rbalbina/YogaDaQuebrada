@@ -20,10 +20,6 @@
             <h1 class="landing__h2">VEJA SUAS AULAS E MATRÍCULAS</h1>
           </div>
 
-          <!-- <div class="landing__button">
-            <a href="newclass"><button class="landing__button--text">CRIAR UMA SALA DE AULA</button></a>
-            <p class="landing__button--legenda">apenas para professores...</p>
-          </div> -->
 
         </div>
       </section>
@@ -33,42 +29,67 @@
 
           <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <% for( let index=0; index < classData.length; index++ ) { %>
-            
               <div class="col">
-              
-                <div class="card shadow-sm">
-              
-                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" 
-                  xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                  preserveAspectRatio="xMidYMid slice" focusable="false">
+                <!-- <div class="card shadow-sm">
+                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <title>Placeholder</title>
+                    <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef" dy=".3em">
+                      TGESTE
+                    </text>
+                  </svg>
 
-                  <title>Placeholder</title>
-
-                  <rect width="100%" height="100%" fill="#55595c"/>
-                  <text x="50%" y="50%" fill="#eceeef" dy=".3em"> TESTE </text>
-                </svg>
-
-                <div class="card-body">
-
-                  <p class="card-text">Verifique o dia e horário da sua aula e prepare-se. Não esqueça de colocar
-                    roupas confortáveis e sua água.</p>
-                  
-                  <div class="d-flex justify-content-between align-items-center">
-                    
-                    <div class="btn-group">
-                      <a href="enroll"
-                        class="btn btn-sm btn-outline-secondary">Assistir aula</a>
-                      <a href="Class" class="btn btn-sm btn-outline-secondary">ENTRAR NA AULA</a>
-                      <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                  <div class="card-body">
+                    <p class="card-text">Verifique o dia e horário da sua aula e prepare-se. Não esqueça de colocar
+                      roupas confortáveis e sua água.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="<%= classData[index].id%>" class="btn btn-sm btn-outline-secondary">Assistir aula</a>
+                        <form action="<%= classData[index].id%>/remove?_method=DELETE" method="POST">
+                          <button type="submit" class="btn btn-sm btn-outline-secondary">Cancelar aula</button>
+                        </form>
+                      </div>
                     </div>
-                    
-                    <!-- <small class="text-muted">9 mins</small> -->
-                  
+                  </div>
+                </div> -->
+                <div class="card shadow-sm">
+
+                  <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
+                    xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
+                    preserveAspectRatio="xMidYMid slice" focusable="false">
+
+                    <title>Placeholder</title>
+
+                    <rect width="100%" height="100%" fill="#55595c" />
+
+                    <text x="50%" y="50%" fill="#eceeef" dy=".3em"><%= classData[index].class.category%></text>
+
+                      <div>
+                        <text x="50%" y="50%" fill="#eceeef" dy=".3em"><%= classData[index].class.week_days%>, às <%= classData[index].class.time%></text>
+                      </div>
+                      
+                  </svg>
+
+                  <div class="card-body">
+                    <!--  -->
+                    <p class="card-text">Verifique o dia e horário da sua aula e prepare-se. Não esqueça de colocar
+                      roupas confortáveis e sua água.</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                     <div class="btn-group">
+                        <a href="<%= classData[index].id%>" class="btn btn-sm btn-outline-secondary">Assistir aula</a>
+                        <form action="<%= classData[index].id%>/remove?_method=DELETE" method="POST">
+                          <button type="submit" class="btn btn-sm btn-outline-secondary">Cancelar aula</button>
+                        </form>
+                        <!-- <a href="./Class.html" class="btn btn-sm btn-outline-secondary">ENTRAR NA AULA</a> -->
+                        <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                      </div>
+                      <!-- <small class="text-muted">9 mins</small> -->
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <% } %>
+              <% } %>
           </div>
         </div>
       </div>

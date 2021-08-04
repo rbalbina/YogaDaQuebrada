@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const server = require('http')
 const session = require('express-session')
+const methodOverride = require('method-override')
 const cors = require('cors')
 const app = express();
 // const ejsLint = require('ejs-lint')
@@ -22,6 +23,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride('_method'))
 // app.use('/public', express.static('public'));
 app.use(express.static('public'));
 

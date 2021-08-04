@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-br">
+
+<%- include('head'); %>
+  <%- include('headerlanding'); %>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    </head>
+
+    <body>
+      <main class="container">
+        <section class="landing__section">
+          <div>
+            <div class="landing__titulo">
+              <h1 class="landing__h1">MINHA AGENDA DE AULAS</h1>
+              <h1 class="landing__h2">VEJA SUAS AULAS E MATRÍCULAS</h1>
+            </div>
+
+            <div class="landing__button">
+              <a href="classes/newclass"><button class="landing__button--text">CRIAR UMA SALA DE AULA</button></a>
+              <p class="landing__button--legenda">apenas para professores...</p>
+            </div>
+
+          </div>
+        </section>
+        <div class="p-5 mb-4 bg-light rounded-3">
+          <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">Bem Vindo <%= user.name %>!!</h1>
+            <h3 class="col-md-8 fs-4">Você não está matriculado em nenhuma aula</h3>
+            <p class="col-md-8 fs-4">Vá até a sessão matricule-se agora mesmo e começo um novo ciclo em sua vida</p>
+          </div>
+        </div>
+      </main>
+
+      <%- include('footer'); %>
+
+    </body>
+
+</html>

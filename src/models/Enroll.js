@@ -6,24 +6,26 @@ module.exports = (sequelize, DataType) =>{
             type: DataType.INTEGER,
       
           },
-          // time_id: {
-          //   type: DataType.INTEGER,
-      
-          // },
+          
           student_id: {
+            type: DataType.INTEGER,
+      
+          },
+          room_link: {
+              
             type: DataType.INTEGER,
       
           },
     },{
         tableName: 'student_enrollment',
-        timestamps: false
+        timestamps: true
     })
 
     Enroll.associate = (modelList)=>{
 
         Enroll.belongsTo(modelList.Class,{
             foreignKey: 'class_id',
-            as:'category'
+            as:'class'
         })
 
         Enroll.belongsTo(modelList.User,{

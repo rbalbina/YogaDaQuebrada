@@ -8,20 +8,23 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      date: {
+      week_days: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      // time_id: {
-      //   type: Sequelize.INTEGER,
-      //   allowNull: false,
-      // },
-      professor_id: {
-        type: Sequelize.INTEGER,
+      time: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      category_id: {
+
+      professor_id: {
         type: Sequelize.INTEGER,
+        references: { model:'users', key: 'id'},
+        onDelete: 'CASCADE',
+        allowNull: false,
+      },
+      category: {
+        type: Sequelize.STRING,
         allowNull: false,
       },
       createdAt: {

@@ -6,24 +6,14 @@ class ClassService {
     static findAll() {
         return Class.findAll({
             attributes: { exclude: ["createdAt", "updatedAt"] },
-            include: [{
-                model: Category,
-                required: true,
-                as: 'category',
-                attributes: ['name']
-            },
+            include: [
             {
                 model: User,
                 required: true,
                 as: 'professor',
                 attributes: ['name']
             },
-            {
-                model: Timing,
-                required: true,
-                as: 'timings',
-                attributes: ['time']
-            },
+  
             {
                 model: Enroll,
                 // required: true,
@@ -34,14 +24,11 @@ class ClassService {
         })
     }
 
-    static findAllTiming() {
-        return Timing.findAll()
-    }
 
     static findById(id) {
         
         return Class.findByPk(id, {
-            attributes: ["id", "date"],
+            attributes: ["id", "week_days"],
             include: [{
               model: Category,
               required: true,
@@ -54,12 +41,7 @@ class ClassService {
               as: 'professor',
               attributes: ['name']
             },
-            {
-              model: Timing,
-              required: true,
-              as: 'timings',
-              attributes: ['time']
-            }
+
             ],
           })
     }

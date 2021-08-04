@@ -129,9 +129,9 @@
 //   document.querySelector('.main__video_button').innerHTML = html;
 // }
 
-//New version
+// New version
 // const roomID = "<%= roomID %>"
-console.log("FROM EJS: " + roomID)
+// console.log("FROM EJS: " + roomID)
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const videoGridP = document.getElementById('video-gridP')

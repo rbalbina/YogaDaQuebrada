@@ -11,15 +11,31 @@ module.exports = {
       },
       class_id: {
         type: Sequelize.INTEGER,
+        references: { model: 'classes', key: 'id'},
+        onDelete: 'CASCADE',
         allowNull: false,
       },
-      time_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
+      
       student_id: {
         type: Sequelize.INTEGER,
+        references: { model:'users', key: 'id'},
+        onDelete: 'CASCADE',
         allowNull: false,
+      },
+
+      room_link: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
+      createdAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      },
+      
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
       }
     });
   },

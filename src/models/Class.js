@@ -1,20 +1,22 @@
 module.exports = (sequelize, DataType) =>{
     const Class = sequelize.define('Class', {
 
-        date: {
+        week_days: {
             type: DataType.STRING,
             allowNull: false,
           },
-        //   time_id: {
-        //     type: DataType.INTEGER,
-        //     allowNull: false,
-        //   },
+
+          time: {
+            type: DataType.STRING,
+      
+          },
+
           professor_id: {
             type: DataType.INTEGER,
       
           },
-          category_id: {
-            type: DataType.INTEGER,
+          category: {
+            type: DataType.STRING,
       
           },
     },{
@@ -24,19 +26,14 @@ module.exports = (sequelize, DataType) =>{
 
     Class.associate = (modelList)=>{
 
-        Class.belongsTo(modelList.Category,{
-            foreignKey: 'category_id',
-            as:'category'
-        })
+        // Class.belongsTo(modelList.Category,{
+        //     foreignKey: 'category_id',
+        //     as:'category'
+        // })
 
         Class.belongsTo(modelList.User,{
             foreignKey: 'professor_id',
             as:'professor'
-        })
-
-        Class.hasMany(modelList.Timing,{
-            foreignKey: 'class_id',
-            as:'timings'
         })
 
         Class.hasMany(modelList.Enroll,{
