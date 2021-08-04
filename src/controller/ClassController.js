@@ -14,9 +14,10 @@ module.exports = {
       const allClasses = await ClassService.findAll()
       console.log(allClasses)
       // res.status(201).send(allClasses)
-      res.render('all_classes', {allClasses:allClasses, user:req.session.user})
+      res.render('all_classes', { allClasses: allClasses, user: req.session.user })
     }
     catch (e) {
+      console.log(e)
       res.status(400).send(e)
     }
   },
@@ -26,8 +27,8 @@ module.exports = {
     try {
       // const getuser = await UserService.findById(req)
       // console.log(getuser)
-      const classData = await ClassService.findById(classid)
-      res.render('landing', {classData: classData, user:req.session.user})
+      const classData = await ClassService.findById(_id)
+      res.render('landing', { classData: classData, user: req.session.user })
       // res.status(201).send(allClasses)
       console.log(classData)
     }
@@ -38,12 +39,27 @@ module.exports = {
   },
 
   getRoomID: async (req, res) => {
-    // const _id = req.params.id
+    const classId = req.params.classid
+    const { id } = req.params
+    const user = req.session.user
+    const classParams = {
+      class_id: req.params.classid,
+      student_id: req.params.id
+    }
+    console.log("CLASSID: " + classId)
+    console.log("ID: " + id)
     try {
-      // const getuser = await UserService.findById(req)
-      // console.log(getuser)
-      // const allClasses = await ClassService.findById(_id)
-      res.render('class',{user:req.session.user})
+
+      if (user.userType == 'Aluno') {
+        const getClassData = await EnrollService.EnrolledData(classParams)
+        console.log(getClassData)
+        const classRoomLink = `${getClassData.class_id}/${getClassData.room_link}`
+        console.log(classRoomLink)
+        res.render('class', { classId: classId, classlink: classRoomLink, user: req.session.user })
+      } else {
+        res.render('classTeacher', { classId: classId, user: req.session.user })
+      }
+
       // res.status(201).send(allClasses)
     }
     catch (e) {
@@ -52,87 +68,36 @@ module.exports = {
     }
   },
 
-  getAllTimings: async (req, res) => {
-
-    try {
-      const allTimings = await ClassService.findAllTiming()
-      res.status(201).send(allTimings)
-    }
-    catch (e) {
-      res.status(400).send(e)
-      console.log(e)
-    }
-  },
-
-  testTimins: async (req, res) => {
-    let arrayTiming = []
-    try {
-
-      const timeOptions = req.body.time
-      timeOptions.map(async time => {
-        arrayTiming.push({
-          time: time,
-          class_id: req.body.class_id
-
-        })
-
-      })
-      console.log(arrayTiming)
-    }
-    catch (e) {
-
-      res.status(400).send(e)
-      console.log(e)
-    }
-
-  },
-
 
   newClass: async (req, res) => {
-    const weekbody = req.body.date
+    const weekbody = req.body.week_days
+    const time = `${req.body.time}h${req.body.minutos}-${req.body.AMPM}`
+    console.log("REQUEST: "+ Array.isArray(weekbody))
+
     let weekDays
-    if(weekbody.length >1){
-      weekDays = weekbody[0]
-      for(i=1; i<weekbody.length; i++){
-        weekDays = `${weekDays}, ${weekbody[i]}`
-      }
+    if (Array.isArray(weekbody)) {
+      weekDays = weekbody.reduce((string, diasSemana) => {
+        return `${string}, ${diasSemana}`
+      })
     }else{
       weekDays = weekbody
     }
 
-    console.log("STRING: " +weekDays)
+    // console.log("STRING: " + weekDays)
     try {
-  
-        const classData = {
-          date: weekDays,
-          professor_id: req.params.id,
-          category_id: req.body.category
-    
-        }
 
-        const yogaClass = await Class.create(classData)
-        const timing = `${req.body.time}h${req.body.minutos}-${req.body.AMPM}`
+      const classData = {
+        week_days: weekDays,
+        time: time,
+        professor_id: req.params.id,
+        category: req.body.category
 
-        const timeOptions = {
-          time: timing,
-          class_id: yogaClass.id
-        }
-        // const createTimingsForClass = await Timing.create(timeOptions)
+      }
 
-      // const createClass = await Class.create(classData)
+      const yogaClass = await Class.create(classData)
+      
 
-      // let arrayTiming = []
-
-      // const timeOptions = timeOptions.map(async time => {
-      //   arrayTiming.push({
-      //     time: timing,
-      //     class_id: createClass.id
-
-      //   })
-      // })
-      // const createTimingsForClass = await Timing.bulkCreate(arrayTiming)
-      // res.status(201).send({body: req.body, params: req.params})
-      res.render('newClassMessage', {user: req.session.user})
+      res.render('newClassMessage', { user: req.session.user })
     }
     catch (e) {
       res.status(400).send(e)
@@ -145,7 +110,7 @@ module.exports = {
 
     try {
 
-      res.render('newclass', { user:req.session.user})
+      res.render('newclass', { user: req.session.user })
     }
     catch (e) {
       res.status(400).send(e)
@@ -167,7 +132,7 @@ module.exports = {
       // const getEnrollment = await EnrollService.findAll(enrollData)
 
       const studentEnrolled = await EnrollService.create(enrollData)
-      res.render('enrollMessage', {user:req.session.user})
+      res.render('enrollMessage', { user: req.session.user })
 
     }
     catch (e) {
@@ -181,7 +146,7 @@ module.exports = {
 
     try {
 
-      res.render('enroll', {user: req.session.user, classid:classid})
+      res.render('enroll', { user: req.session.user, classid: classid })
 
     }
     catch (e) {
@@ -192,42 +157,43 @@ module.exports = {
 
   myClasses: async (req, res) => {
     const userid = req.params.id
-    console.log(userid)
+    console.log(req.params)
 
-    try {     
-        
-      
+    try {
+
+
       const user = req.session.user
+      console.log("USER DATA" +user.userType)
 
-      if(user.userType =='Aluno'){
+      if (user.userType == 'Aluno') {
 
         const myClasses = await EnrollService.findClassByUser(userid)
-        console.log("My classes are: "+myClasses)
+        console.log("My classes are: " + myClasses)
 
-        if (myClasses.length == 0){
-          res.render('myClassesMessage', {user:req.session.user})
-        }else{
-          console.log("ENROLLED: " + myClasses.length)
-          // res.render(myClasses)
-          res.render('landing', {classData: myClasses, user:req.session.user})
-          
+        if (myClasses.length == 0) {
+          res.render('myClassesMessage', { user: req.session.user })
+        } else {
+          console.log("ENROLLED: " + myClasses)
+          // res.send(myClasses)
+          res.render('landing', { classData: myClasses, user: req.session.user })
+
         }
-      }else{
+      } else {
 
         const myClasses = await ClassService.findClassByUserId(userid)
 
-        if (myClasses.length == 0){
-          res.render('myClassesMessage', {user:req.session.user})
-        }else{
+        if (myClasses.length == 0) {
+          res.render('myClassesMessageTeacher', { user: req.session.user })
+        } else {
           console.log(myClasses)
           // res.send(myClasses)
-          res.render('landingTeacher', {classData: myClasses, user:req.session.user})
-          
+          res.render('landingTeacher', { classData: myClasses, user: req.session.user })
+
         }
       }
-  
 
-      
+
+
 
     }
     catch (e) {
@@ -239,40 +205,31 @@ module.exports = {
 
   removeClasses: async (req, res) => {
 
-    // const classid = req.params.classid
+
+    try {
+
+
+      const user = req.session.user
+      const { classid } = req.params
+      const { id } = req.params
 
 
 
-    try {     
-        
-      const {classid} = req.params
-      const removeClass = await ClassService.removeClass(classid)
-      console.log(removeClass)
-      res.redirect('/:id/myclasses')
-      // const user = req.session.user
-      
-      // res.status(200).send(removeClass)
-      // res.redirect(`/:id/myclasses`)
-
-      // if(user.userType =='Aluno'){
-
-        
-      //   const removeClass = await EnrollService.removeClass(classid)
-      //   res.status(200).send(removeClass)
-      //   // res.render('landing', {classData: myClasses, user:req.session.user})
-      //   console.log("Class deleted: "+removeClass)
+      if (user.userType == 'Aluno') {
 
 
-      // }else{
+        const removeClass = await EnrollService.removeClass(classid)
+        res.render('removeClassMessage', { user: id })
 
-      //   const removeClass = await ClassService.removeClass(classid)
-      //   res.status(200).send(removeClass)
-      //   // 
-      //   console.log("Class deleted: "+removeClass)
 
-      // }
-  
-      
+      } else {
+
+        const removeClass = await ClassService.removeClass(classid)
+        res.render('removeClassMessage', { user: id })
+
+      }
+
+
 
     }
     catch (e) {

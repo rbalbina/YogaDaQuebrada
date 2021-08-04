@@ -8,15 +8,45 @@ class EnrollService {
             where: {
               class_id: enrollData.class_id,
               student_id: enrollData.student_id
+            }, attributes: {exclude: ["createdAt", "updatedAt"] },
+            include: [{
+                model: Class,
+                required: true,
+                as: 'class',
+                attributes: ['id', 'week_days', 'category']
             }
+            ],
           })
     }
+
+    static EnrolledData(enrollData) {
+      return Enroll.findOne({
+          where: {
+            id: enrollData.class_id,
+            student_id: enrollData.student_id
+          }, attributes: {exclude: ["createdAt", "updatedAt"] },
+          include: [{
+              model: Class,
+              required: true,
+              as: 'class',
+              attributes: ['id', 'week_days', 'category']
+          }
+          ],
+        })
+  }
 
     static findClassByUser(userid) {
         return Enroll.findAll({
             where: {
               student_id: userid
+            }, attributes: {exclude: ["createdAt", "updatedAt"] },
+            include: [{
+                model: Class,
+                required: true,
+                as: 'class',
+                attributes: ['id', 'week_days', 'category', 'time']
             }
+            ],
           })
     }
 
