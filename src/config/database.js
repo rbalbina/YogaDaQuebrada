@@ -1,8 +1,8 @@
 require('dotenv').config()
 
 module.exports = {
-    username:'root',
-    password: '12345678',
+    username:'crgi',
+    password: '1234',
     database: 'yoga',
     host: 'localhost',
     dialect: 'mysql'
