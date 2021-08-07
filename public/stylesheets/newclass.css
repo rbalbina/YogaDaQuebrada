@@ -89,8 +89,8 @@ html{
 
 .usuario__titulo{
     display: flex;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 23px;
+    font-weight: normal;
     color: #662D91;
     margin-top: 0;
     flex-direction: row;
@@ -99,8 +99,8 @@ html{
 
 .usuario__titulo2{
     display: flex;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 21px;
+    font-weight: lighter;
     color: #066C6F;
     margin-top: 0;
     flex-direction: row;
@@ -108,9 +108,9 @@ html{
 }
 
 .usuario__checkbox{
-    font-size: 14px;
+    font-size: 16px;
     display: flex;
-    color: gray;
+    color: rgb(78, 78, 78);
     margin: 0 1rem 1rem 1rem;
     padding: 1rem;
     flex-direction: row;
@@ -159,8 +159,9 @@ html{
     margin: auto;
     padding: 1rem 0 2rem 0;
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
     flex-direction: row;
+    justify-content: center;
 }
 
 .newclass__horario--hora{
@@ -169,11 +170,12 @@ html{
     display: flex;
     background-color:white;
     border-radius: 50px;
-    width: 9vw;
-    height: 3vw;
+    width: 13vw;
+    height: 32px;
     border: none;
     margin: 0 1rem ;
     color: gray;
+
     font-size: 10pt;
     font-weight: 500;
     align-items: center;
@@ -184,6 +186,8 @@ html{
 .newclass__horario--texto{
     border-color: rgb(230, 230, 230);
     background-color:white;
+    align-content: center;
+    align-items: center;
     }
 
 /* PARTE DOS ICONES */
@@ -198,12 +202,15 @@ html{
 .newclass__images {
     display: flex;
     max-height: 100%;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
     font-size: 23px;
+    flex-wrap: wrap;
 }
   
 .newclass__images--img {
+    flex-direction: row;
     display: block;
     width: 60px;
     height: auto;
@@ -212,9 +219,9 @@ html{
     }
   
 .newclass__legenda {
-    color: gray;
+    color: rgb(78, 78, 78);
     flex-direction: column;
-    margin: 0 1rem 1rem 1rem;
+    margin: 0 0.75rem 1rem 0.75rem;
     display: flex;
     max-height: 100%;
     font-size: 14px;
@@ -244,6 +251,8 @@ html{
     border: none;
     margin: 20px 0 0 0;
     color: white;
+    font-family: 'Titillium Web', sans-serif;
+    text-align: center;
     font-size: 15pt;
     font-weight: 700;
     align-items: center;

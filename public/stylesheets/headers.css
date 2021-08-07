@@ -12,24 +12,16 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
- margin: 0;
- padding: 0;
- border: 0;
- font-size: 100%;
- font: inherit;
- vertical-align: baseline;
- box-sizing: border-box;
- list-style: none;
- text-decoration: none;
- }
- 
-/* FONTES */
-@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700&display=swap');
- 
-html{
- font-family: 'Titillium Web', sans-serif;
- text-align: center;
- }
+margin: 0;
+padding: 0;
+border: 0;
+font-size: 100%;
+font: inherit;
+vertical-align: baseline;
+box-sizing: border-box;
+list-style: none;
+text-decoration: none;
+  }
 
                               /* BARRA DE NAVEGAÇÃO */
 .header {
@@ -50,18 +42,38 @@ html{
   object-position:inherit;
   text-align: center;
   border-radius: 20px;
-  width: 30vw;
+  width: 20vw;
   height: 25px;
   border: none;
   background-color: rgb(236, 236, 236);
   }
 
 .header__menu {
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-direction: row;
   align-items: center;
   width: 40vw;
   display: flex;
+  }
+
+.header__menu--item {
+  margin: 10px;
+  font-size: 12px;
+  text-align: center;
+  } 
+
+.header__menu--cor1 {
+  color: #662D91;
+  }
+
+.header__menu--cor2 {
+  color:#066C6F;
+  }
+
+.header__menu--instrutor {
+  font-size: 13px;
+  font-weight:600;
+  color: #662D91;
   }
 
 .header__menu__entrar {
@@ -72,27 +84,10 @@ html{
   display: flex;
   }
 
-.header__menu--item {
-  margin: 5px;
-  font-size: 12px;
-  text-align: center;
-  } 
-
-.header__menu--cor2 {
-  color:#066C6F;
-  }
-
-.header__menu--instrutor {
-  margin: 5px;
-  font-size: 13px;
-  text-align: center;
-  font-weight:600;
-  }
-
 .header__button {
   background-color: #e0edee;
   border-radius: 50px;
-  width: 15vw;
+  width: 15%;
   height: 25px;
   border: none;
   margin: 20px 40px 20px 0; 
@@ -100,6 +95,105 @@ html{
   font-size: 10pt;
   font-weight: 700;
   padding: 0.25%;
+  }
+
+.header__button2 {
+  background-color: #D7C9E6;
+  border-radius: 50px;
+  width: 15%;
+  height: 25px;
+  border: none;
+  margin: 20px 40px 20px 0; 
+  color: #662D91;
+  font-size: 10pt;
+  font-weight: 700;
+  padding: 0.25%;
+  }
+
+.header__landing {
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  display: flex;
+  margin: 0 2% 0 2%;
+  }
+
+.header__landing--menu {
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  width: 30vw;
+  display: flex;
+  }
+
+.header__landing--button {
+  background-color: #e0edee;
+  border-radius: 50px;
+  width: 50%;
+  height: 25px;
+  border: none;
+  margin: 2%; 
+  color: #066C6F;
+  font-size: 10pt;
+  font-weight: 700;
+  padding: 0;
+  }
+  
+.header__landing--button2 {
+  background-color: #D7C9E6;
+  border-radius: 50px;
+  width: 50%;
+  height: 25px;
+  border: none;
+  margin: 2%; 
+  color: #662D91;
+  font-size: 10pt;
+  font-weight: 700;
+  padding: 0;
+  }
+
+.header__allclasses {
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  display: flex;
+  margin: 0 2% 0 2%;
+  }
+
+.header__allclasses--menu {
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  width: 30vw;
+  display: flex;
+  }
+
+.header__allclasses--button {
+  background-color: #e0edee;
+  border-radius: 50px;
+  width: 50%;
+  height: 25px;
+  border: none;
+  margin: 2%; 
+  color: #066C6F;
+  font-size: 10pt;
+  font-weight: 700;
+  padding: 0;
+  }
+  
+.header__allclasses--button2 {
+  background-color: #D7C9E6;
+  border-radius: 50px;
+  width: 50%;
+  height: 25px;
+  border: none;
+  margin: 2%; 
+  color: #662D91;
+  font-size: 10pt;
+  font-weight: 700;
+  padding: 2px;
   }
 
 /* PARTE RESPONSIVA */

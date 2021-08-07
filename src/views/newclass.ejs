@@ -2,7 +2,8 @@
 
 <html>
 
-<%- include('head'); %>
+  <%- include('head'); %>
+  
   <%- include('headerlanding'); %>
 
     <link href="/stylesheets/newclass.css" rel="stylesheet">
@@ -12,15 +13,14 @@
         <div class="main__newclass--background">
 
         </div>
-
         <Section class="section__newclass">
           <form action="newclass" method="POST">
             <div action="newclass__form">
 
               <div>
 
-                <a class="usuario__titulo">QUAIS OS DIAS DA SEMANA VOCÊ VAI DAR ESSA AULA?</a>
-                <a class="usuario__titulo2">VOCÊ PODE ESCOLHER QUALQUER DIA!</a>
+                <a class="usuario__titulo">QUAIS DIAS VOCÊ VAI DAR ESSA AULA?</a>
+                <a class="usuario__titulo2">escolha quais os dias serão suas aulas</a>
 
                 <div class="usuario__checkbox">
 
@@ -37,7 +37,7 @@
                 </div>
 
                 <a class="usuario__titulo">QUAL O HORÁRIO DESSA AULA?</a>
-                <a class="usuario__titulo2">DURAÇÃO DE ATÉ 1 HORA</a>
+                <a class="usuario__titulo2">as aulas tem duração de até 1 hora</a>
 
                 <div class="newclass__horario">
                   <select class="newclass__horario--hora" name="time">
@@ -77,48 +77,48 @@
 
                 </div>
 
-                <a class="usuario__titulo">QUAL O TIPO DE YOGA VOCÊ VAI APLICAR?</a>
-                <a class="usuario__titulo2">ESCOLHA PARA QUAL PÚBLICO SERÁ A AULA</a>
+                <a class="usuario__titulo">QUAL AULA YOGA VOCÊ VAI APLICAR?</a>
+                <a class="usuario__titulo2">escolha para qual público será sua aula</a>
 
               </div class="newclass__about">
 
               <div class="newclass__images">
 
-                <div class="newclass__legenda">
-                  <div href="#"><img class="newclass__images--img" src="./images/iniciantes.svg" title="image1"
+                <label class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="/images/iniciantes.svg" title="image1"
                       alt="image1"></div>
                   <input TYPE="radio" name="category" value="INICIANTES"> INICIANTES
-                </div>
+                </label>
 
-                <div class="newclass__legenda">
-                  <div href="#"><img class="newclass__images--img" src="./images/criancas.svg" title="image1"
+                <label class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="/images/criancas.svg" title="image1"
                       alt="image1"></div>
                   <input TYPE="radio" name="category" value="CRIANÇAS"> CRIANÇAS
-                </div>
+                </label>
 
-                <div class="newclass__legenda">
-                  <div href="#"><img class="newclass__images--img" src="./images/adultos.svg" title="image1"
+                <label class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="/images/adultos.svg" title="image1"
                       alt="image1"></div>
                   <input TYPE="radio" name="category" value="ADULTOS"> ADULTOS
-                </div>
+                </label>
 
-                <div class="newclass__legenda">
-                  <div href="#"><img class="newclass__images--img" src="./images/idosos.svg" title="image1"
+                <label class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="/images/idosos.svg" title="image1"
                       alt="image1"></div>
                   <input TYPE="radio" name="category" value="IDOSOS"> IDOSOS
-                </div>
+                </label>
 
-                <div class="newclass__legenda">
-                  <div href="#"><img class="newclass__images--img" src="./images/especiais.svg" title="image1"
+                <label class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="/images/especiais.svg" title="image1"
                       alt="image1"></div>
                   <input TYPE="radio" name="category" value="ESPECIAIS"> ESPECIAIS
-                </div>
+                </label>
 
-                <div class="newclass__legenda">
-                  <div href="#"><img class="newclass__images--img" src="./images/avancado.svg" title="image1"
+                <label class="newclass__legenda">
+                  <div href="#"><img class="newclass__images--img" src="/images/avancado.svg" title="image1"
                       alt="image1"></div>
                   <input TYPE="radio" name="category" value="AVANÇADO"> AVANÇADO
-                </div>
+                </label>
 
               </div>
 

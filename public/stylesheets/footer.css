@@ -34,14 +34,17 @@ html{
 /* RODAPE / FOOTER */
 .footer{
     background-color: #066C6F;
+    height: 30vmax;
   }
 
 .footer__container{
   align-items: center;
-  justify-content: space-evenly;
   display: flex;
+  padding-top: 40px;
+  flex-direction: column;
   flex-wrap: wrap;
-  padding-top: 20px;
+  align-content: center;
+  justify-content: center;
 }
 
 .footer__container--menor{
@@ -61,6 +64,13 @@ html{
   padding: 2px;
   }
 
+.footer__images--menor{
+  width: 170px;
+  height: auto;
+  margin: 25px;
+  padding: 5px;
+  }
+
 .footer__links{
   align-items: center;
   justify-content: space-evenly;
@@ -69,17 +79,17 @@ html{
   width: 400px;
   height: auto;
   margin: 5px;
-  }
-
-#link{  
-  display: flex;
-  line-height: 100%;
   font-size: 30px;
   font-weight: bold;
-  color: #e0edee;
+  }
+
+.footer__links--link{  
+  display: flex;
+  line-height: 100%;
   justify-content: center;
   margin: 5 auto;
   align-items: center;
+  color: #662D91;
 }
 
 .footer__links2{
@@ -98,9 +108,7 @@ html{
   line-height: 100%;
   font-size: 15px;
   font-weight: bold;
-  color: #e0edee;
   justify-content: center;
-  margin: 5 auto;
   align-items: center;
 }
 

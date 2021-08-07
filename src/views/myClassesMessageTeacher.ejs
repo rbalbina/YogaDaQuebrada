@@ -2,40 +2,42 @@
 <html lang="pt-br">
 
 <%- include('head'); %>
-  <%- include('headerlanding'); %>
 
-    <!-- Bootstrap core CSS -->
-    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+<%- include('headerlanding'); %>
 
-    </head>
+  <!-- Bootstrap core CSS -->
+  <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/stylesheets/landing.css" rel="stylesheet">
 
-    <body>
-      <main class="container">
-        <section class="landing__section">
-          <div>
-            <div class="landing__titulo">
-              <h1 class="landing__h1">MINHA AGENDA DE AULAS</h1>
-              <h1 class="landing__h2">VEJA SUAS AULAS E MATRÍCULAS</h1>
-            </div>
+  </head>
 
-            <div class="landing__button">
-              <a href="classes/newclass"><button class="landing__button--text">CRIAR UMA SALA DE AULA</button></a>
-              <p class="landing__button--legenda">apenas para professores...</p>
-            </div>
-
+  <body>
+    <main class="container">
+      <section class="landing__section">
+        <div>
+          <div class="landing__titulo">
+            <h1 class="landing__h1">MINHA AGENDA DE AULAS</h1>
+            <h1 class="landing__h2">VEJA SUAS AULAS E MATRÍCULAS</h1>
           </div>
-        </section>
-        <div class="p-5 mb-4 bg-light rounded-3">
-          <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Bem Vindo <%= user.name %>!!</h1>
-            <h3 class="col-md-8 fs-4">Você não está matriculado em nenhuma aula</h3>
-            <p class="col-md-8 fs-4">Vá até a sessão matricule-se agora mesmo e começo um novo ciclo em sua vida</p>
+
+          <div class="landing__button">
+            <a href="classes/newclass"><button class="landing__button--text">CRIAR UMA SALA DE AULA</button></a>
+            <p class="landing__button--legenda">apenas para professores...</p>
           </div>
+
         </div>
-      </main>
+      </section>
+      <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Bem Vindo <%= user.name %>!!</h1>
+          <h3 class="col-md-8 fs-4">Você não está matriculado e não cadastrou nenhuma aula</h3>
+          <p class="col-md-8 fs-4">Encontre uma aula no menu acima e matricule-se agora mesmo <br>ou cadastre uma aula e ajude a mudar a vida das pessoas!<br></p>
+        </div>
+      </div>
+    </main>
 
-      <%- include('footer'); %>
+    <%- include('footer_menor'); %>
 
-    </body>
+  </body>
 
 </html>
