@@ -14,7 +14,17 @@ module.exports = {
       const allClasses = await ClassService.findAll()
       console.log(allClasses)
       // res.status(201).send(allClasses)
-      res.render('all_classes', { allClasses: allClasses, user: req.session.user })
+
+      const user = req.session.user
+      console.log("USER DATA" +user.userType)
+
+      if (user.userType == 'Aluno') {
+        res.render('all_classes', { allClasses: allClasses, user: req.session.user })
+
+      } else {
+        res.render('all_classes_teacher', { allClasses: allClasses, user: req.session.user })
+      }
+
     }
     catch (e) {
       console.log(e)
