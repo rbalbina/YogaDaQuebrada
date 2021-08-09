@@ -5,19 +5,19 @@
   <%- include('headerlanding'); %>
 
     <!-- Bootstrap core CSS -->
-    <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/messages.css" rel="stylesheet">
 
     </head>
 
     <body>
-      <main class="container">
 
-        <div class="p-5 mb-4 bg-light rounded-3">
-          <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Welcome <%= user.name %>!!</h1>
-            <p class="col-md-8 fs-4">Matricule-se e aproveite as aulas</p>
-            <form action="enroll" method="POST">
-              <button class="btn btn-primary btn-lg" type="submit">Matricular</button>
+      <main>
+        <div class="message">
+          <div>
+            <h1 class="message__titulo">Olá <%= user.name %> !!</h1>
+            <p class="message__texto">Confirme sua matrícula e aproveite a aula!</p>
+            <form class="message__botao" action="enroll" method="POST">
+              <button class="message__botao--texto" type="submit">CONFIRMAR MATRÍCULA</button>
             </form>
           </div>
         </div>

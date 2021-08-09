@@ -29,46 +29,67 @@ time, mark, audio, video {
 html{
     font-family: 'Titillium Web', sans-serif;
     text-align: center;
+    }
+
+.message{
+    background-color: white;
+    margin-bottom: 4rem;
 }
 
-.allclasses__section{
-    background-color: #e0edee;
+.message__titulo{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    font-size: 30px;
+    font-weight: bold;
+    color: #000000;
 }
 
-.allclasses__titulo{
+.message__texto{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: auto;
-    padding-top: 3rem;
 }
 
-.allclasses__titulo--aluno{
-    display: flex;
-    flex-direction: column;
+.message__botao {
+    border: none;
+    padding: 0 0 1.5rem 0;
     align-items: center;
-    margin: auto;
-    padding: 3rem 0 3rem 0;
+    align-content: space-around;
 }
 
-.allclasses__h1{
+.message__botao--texto {
+    background-color: #662D91;
+    border-radius: 50px;
+    width: 25vw;
+    height: 40px;
+    border: none;
+    margin: 15px 0 0 0;
+    color: white;
+    font-size: 12pt;
+    font-weight: 700;
+}
+
+/* 
+.landing__h1{
     display: flex;
     line-height: 50%;
     font-size: 36px;
     font-weight:bold;
-    color:#662D91;
+    color:#066C6F;
     margin-bottom: 0;
     }
 
-.allclasses__h2{
+.landing__h2{
     display: flex;
     font-size: 28px;
     font-weight: 500;
-    color: #066C6F;
+    color: #662D91;
     margin-top: 0;
     }
 
-.allclasses__button {
+.landing__button {
     display: flex;
     border: none;
     padding: 0 0 1.5rem 0;
@@ -77,25 +98,24 @@ html{
     align-content: space-around;
 }
 
-.allclasses__button--legenda{
+.landing__button--legenda{
     font-size: 12px;
     color: gray;
     padding-bottom: 20px;
 }
 
-.allclasses__button--text {
+.landing__button--text {
     display: flex;
-    background-color: #D7C9E6;
+    background-color: #662D91;
     border-radius: 50px;
     width: 25vw;
     height: 40px;
     border: none;
     margin: 15px 0 0 0;
-    color: #662D91;
+    color: white;
     font-size: 12pt;
     font-weight: 700;
     align-items: center;
     justify-content: space-around;
     align-content: space-around;
-}
-
+} */

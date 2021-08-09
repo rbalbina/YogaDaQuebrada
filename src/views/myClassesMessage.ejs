@@ -6,8 +6,8 @@
 <%- include('headerlanding'); %>
 
   <!-- Bootstrap core CSS -->
-  <link href="/assets/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="/stylesheets/allclasses.css" rel="stylesheet">
+  <link href="/stylesheets/messages.css" rel="stylesheet">
 
 </head>
 
@@ -16,9 +16,9 @@
 
     <section class="allclasses__section">
       <div>
-        <div class="allclasses__titulo">
+        <div class="allclasses__titulo--aluno">
           <h1 class="allclasses__h1">PROCURE POR AULAS DISPONÍVEIS</h1>
-          <h1 class="allclasses__h2">GRÁTIS PARA TODOS OS PERFIS E IDADES!</h1>
+          <h2 class="allclasses__h2">GRÁTIS PARA TODOS OS PERFIS E IDADES!</h2>
         </div>
 
         <!-- <div class="allclasses__button">
@@ -29,11 +29,11 @@
       </div>
     </section>
 
-    <div class="p-5 mb-4 bg-light rounded-3">
-      <div class="container-fluid py-5">
-        <h1 class="display-5 fw-bold">Bem Vindo <%= user.name %>!!</h1>
-        <h3 class="col-md-8 fs-4">Você não está matriculado em nenhuma aula</h3>
-        <p class="col-md-8 fs-4">Encontre uma aula no menu acima e matricule-se agora mesmo! <br>Comece um novo ciclo em sua vida<br></p>
+    <div>
+      <div class="message">
+        <h1 class="message__titulo">Bem Vindo <%= user.name %> !!</h1>
+        <h3 class="message__texto">Você não está matriculado em nenhuma aula</h3>
+        <p class="message__texto">Encontre uma aula no menu acima e matricule-se agora mesmo! <br>Comece um novo ciclo em sua vida<br></p>
       </div>
     </div>
   </main>
