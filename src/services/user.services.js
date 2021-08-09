@@ -28,8 +28,19 @@ class UserService {
         return User.destroy({ where: { id: id } })
     }
 
-    static login(userData) {
-        return User.findOne({ where: { email: userData.email } })
+    static async login(userData) {
+
+        const user = await User.findOne({ where: { email: userData.email } })
+        if (!user || user == null) {
+            throw new Error("Usuário não encontrado.")
+        }
+
+        const isMatch = bcrypt.compareSync(userData.password, user.password)
+        if (!isMatch) {
+            throw new Error("Usuário/Senha incorretos.")
+        }
+
+        return user
     }
 }
 

@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken')
 const UserService = require('../services/user.services');
 const { username } = require('../config/database.js');
+const bcrypt = require('bcryptjs')
 
 module.exports = {
 
@@ -71,19 +72,21 @@ module.exports = {
 
   login: async (req, res, next) => {
 
+    const userData = {...req.body}
+    console.log(userData)
+
     try {
-      const getuser = await UserService.login(req.body)
-      console.log(getuser)
-      if (Object.keys(getuser).length === 0) throw new Error()
-      const token = await jwt.sign({ id: getuser.id, role: getuser.userType }, 'secret', { expiresIn: '7 days' })
-      // req.user = { id: getuser.id, name: getuser.name, userType: getuser.userType }
-      req.session.user = getuser
-      res.redirect(`/${getuser.id}/myclasses`)
-      // res.status(200).send({ token, getuser })
+      const user = await UserService.login(userData)
+      console.log(user)
+      const token = await jwt.sign({ id: user.id, role: user.userType }, 'secret', { expiresIn: '7 days' })
+      req.session.user = user
+      res.redirect(`/${user.id}/myclasses`)
 
     }
     catch (e) {
-      res.status(400).send({ error: "User do not Exist" })
+
+      res.render('loginErrorMessage', {error:e.message})
+
       console.log(e)
     }
   },

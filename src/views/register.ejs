@@ -2,70 +2,86 @@
 
 <html>
 
-  <%- include('head'); %>
+<%- include('head'); %>
 
-  <%- include('headerRegister'); %>   
-  
-  <link href="/stylesheets/login.css" rel="stylesheet">
+  <%- include('headerRegister'); %>
 
-  <body>
-    <main class="main__login">
-      <div class="main__login--background">
+    <link href="/stylesheets/login.css" rel="stylesheet">
 
-      </div>
-      <Section class="section__login">
-        <form action="/register" method="POST">
+    <body>
+      <main class="main__login">
+        <div class="main__login--background">
+
+        </div>
+        <Section class="section__login">
+          <form action="/register" method="POST">
 
             <div>
-  
+
               <div class="usuario__texto">
-                  <label for="usuario">Entre com seu nome completo:</label>
-                  <input class="campo__usuario" type="text" name="name" id="email">
+                <label for="usuario">Entre com seu nome completo:</label>
+                <input class="campo__usuario" type="text" name="name" id="nome">
               </div>
-  
+
               <div class="usuario__texto">
                 <label for="usuario">Entre com sua conta de e-mail:</label>
                 <input class="campo__usuario" type="text" name="email" id="email">
               </div>
-  
+
               <div class="usuario__texto">
                 <label for="password">Digite sua senha:</label>
                 <input class="campo__usuario" type="password" name="password" id="password">
               </div>
-  
-              <!-- <div class="usuario__texto">
-                  <label for="usuario">Confirme sua senha:</label>
-                  <input class="campo__usuario" type="text" name="email" id="email">
-              </div> -->
-  
+
+              <div class="usuario__texto">
+                <label for="usuario">Confirme sua senha:</label>
+                <input class="campo__usuario" type="password" id="confirm_password">
+              </div>
+
               <div class="usuario__texto">
 
-                  <label class="usuario__texto--professor" for="usuario">QUAL SEU TIPO DE PERFIL?</label>  
+                <label class="usuario__texto--professor" for="usuario">QUAL SEU TIPO DE PERFIL?</label>
 
-                  <div class="usuario__escolha">
-                    <div class="campo__escolha--alunoprof">
-                      <input type="radio" name="userType" id="role" value="Aluno">ALUNO
-                    </div>
-    
-                    <div class="campo__escolha--alunoprof">
-                      <input type="radio" name="userType" id="role" value="Professor">PROFESSOR
-                    </div>
+                <div class="usuario__escolha">
+                  <div class="campo__escolha--alunoprof">
+                    <input type="radio" name="userType" id="role" value="Aluno">ALUNO
+                  </div>
 
-                  </div> 
+                  <div class="campo__escolha--alunoprof">
+                    <input type="radio" name="userType" id="role" value="Professor">PROFESSOR
+                  </div>
+
+                </div>
 
               </div>
 
               <div class="register__button">
-                <button class="register__button--text"  type="submit" >CADASTRAR</button>
+                <button class="register__button--text" type="submit">CADASTRAR</button>
               </div>
-  
+
             </div>
 
-        </form>
+          </form>
 
-      </Section>
-    </main>
-  </body>
+        </Section>
+      </main>
+      <script>
+        const password = document.getElementById("password")
+        const confirm_password = document.getElementById("confirm_password");
+
+
+
+        confirm_password.onblur = function () {
+          if (password.value != confirm_password.value) {
+            alert("Senhas diferentes!")
+            confirm_password.value = ""
+            password.focus()
+          }
+        }
+
+      </script>
+    </body>
+
 </html>
 
 <%- include('footer_menor'); %>

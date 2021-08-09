@@ -10,15 +10,25 @@
     </head>
 
     <body>
-
+ 
       <main>
         <div class="message">
           <div>
             <h1 class="message__titulo">Olá <%= user.name %> !!</h1>
-            <p class="message__texto">Confirme sua matrícula e aproveite a aula!</p>
-            <form class="message__botao" action="enroll" method="POST">
-              <button class="message__botao--texto" type="submit">CONFIRMAR MATRÍCULA</button>
-            </form>
+            
+            <% if (classEnrolled) { %>
+              <p class="message__texto">Por favor escolha outra aula para se matricular. Obrigado!</p>
+              <form class="message__botao" >
+                <button style="background-color: red;" class="message__botao--texto" type="submit">MATRICULA JÁ EFETUADA</button>
+              </form>
+              <% } else { %>
+                <p class="message__texto">Confirme sua matrícula e aproveite a aula!</p>
+                <form class="message__botao" action="enroll" method="POST">
+                  <button class="message__botao--texto" type="submit">CONFIRMAR MATRÍCULA</button>
+                </form>
+                <% }%>
+
+
           </div>
         </div>
       </main>

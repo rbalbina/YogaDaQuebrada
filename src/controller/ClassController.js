@@ -152,11 +152,27 @@ module.exports = {
   },
 
   Enroll: async (req, res) => {
+    const userid = req.params.id
     const classid = req.params.classid
+    const clasData = {
+      class_id: classid,
+      student_id: userid
+    }
+    console.log(clasData)
+    let classEnrolled = false
+    console.log("CLASS DATA: "+classEnrolled)
 
     try {
-
-      res.render('enroll', { user: req.session.user, classid: classid })
+      const classToEnroll = await EnrollService.checkEnrolledClass(clasData)
+      console.log("CLASS ENROLLED: " + classToEnroll)
+      if(classToEnroll==null){
+        res.render('enroll', { user: req.session.user, classid: classid, classEnrolled: classEnrolled })
+      }else{
+        const classEnrolled = true
+        console.log("CLASS ENROLLED ALREADY")
+        res.render('enroll', { user: req.session.user, classid: classid, classEnrolled: classEnrolled })
+      }
+      
 
     }
     catch (e) {

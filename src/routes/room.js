@@ -3,6 +3,12 @@ const { v4: uuidv4, v4 } = require('uuid')
 
 module.exports = app => {
 
+    app.get('/:id/:classid/null', (req, res) => {
+        const user = req.session.user
+
+        res.render('linkClassMessage', {user:user})
+    })
+
     app.get('/:id/:classid/room', (req, res) => {
         res.redirect(`room/${uuidv4()}`)
     })

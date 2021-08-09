@@ -35,6 +35,15 @@ class EnrollService {
         })
   }
 
+    static checkEnrolledClass(enrollData) {
+      return Enroll.findOne({
+          where: {
+            class_id: enrollData.class_id,
+            student_id: enrollData.student_id
+          }
+        })
+  }
+
     static findClassByUser(userid) {
         return Enroll.findAll({
             where: {

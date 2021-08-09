@@ -2,7 +2,6 @@
 <html lang="pt-br">
 
   <%- include('head'); %>
-  <%- include('headerlanding'); %>
 
   <!-- Bootstrap core CSS -->
   <link href="/stylesheets/messages.css" rel="stylesheet">
@@ -10,7 +9,7 @@
   <script>
 
     setTimeout(() => {
-      window.location.href= `/<%=user.id%>/myclasses`
+      window.location.href= 'login'
     }, 3000);
     
   </script>
@@ -22,8 +21,7 @@
   <main>
     <div class="message">
       <div>
-        <h1 class="message__titulo">Link ainda não disponível.</h1>
-        <h2 class="message__titulo">Aguarde seu professor iniciar a aula.</h2>
+        <h1 class="message__titulo"><%= error %></h1>
       </div>
     </div>
   </main>
